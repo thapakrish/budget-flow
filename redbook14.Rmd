@@ -1,0 +1,35 @@
+```{r setup}
+rm(list=ls())
+getwd()
+setwd("~/Documents/github/budget-flow")
+
+library(ggplot2)
+redbook <- read.csv("data/redbook14.csv")
+str(redbook)
+```
+
+```{r redBook}
+# names(redbook)
+#Category,Subcategory,Services and Functions,Source,Grant/ loan,Budget
+
+# Change column names
+colnames(redbook) <- c("Category","Subcategory","Services.and.Functions","Source","Type","Budget")
+
+```
+
+```{r plotly}
+
+#install.packages("plotly")
+library(plotly)
+
+nzRB <- subset(redbook, Budget > 0)
+
+#names(nzRB)
+
+
+plot_ly(nzRB, y = Budget, x = Category,
+        name = "2014 Redbook",
+        type = "bar")
+
+```
+
